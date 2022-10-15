@@ -7,6 +7,10 @@ const QuestionCreaterPage = () => {
 	const [description, setDescription] = useState("");
 
 	const uploadQuestion = () => {
+		if (!window.confirm('問題をアップロードしますか？')) {
+			return ;
+		}
+		alert("問題をアップロードしました");
 		navigate('/');
 	}
 
