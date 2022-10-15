@@ -3,6 +3,7 @@ import Home from './routes/home';
 import QuestionCreaterPage from './routes/question-creater-page';
 import QuestionListPage from './routes/question-list-page';
 import QuestionDescriptionPage from './routes/question-description-page';
+import AnswerListPage from './routes/answer-list-page';
 import NoMatch from './routes/nomatch';
 import { Routes, Route, Link} from 'react-router-dom';
 
@@ -19,6 +20,7 @@ function App() {
                 <Route path="/question-creater-page" element={<QuestionCreaterPage />} />
                 <Route path="/question-list-page" element={<QuestionListPage />} />
                 <Route path="/question-description-page" element={<QuestionDescriptionPage />} />
+                <Route path="/answer-list-page" element={<AnswerListPage />} />
                 <Route path="*" element={<NoMatch />} />
             </Routes>
         </div>
