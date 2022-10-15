@@ -11,7 +11,7 @@ function Home() {
                     <Link to="/question-creater-page">問題を作る</Link>
                 </li>
                 <li>
-                    <Link to="/question-list">問題を解く</Link>
+                    <Link to="/question-list-page">問題を解く</Link>
                 </li>
                 <li>
                     <Link to="/question-creater-page">採点する</Link>
