@@ -1,9 +1,8 @@
 import React, { useState } from "react";
-import { useNavigate, useLocation } from "react-router-dom"
+import { useNavigate } from "react-router-dom"
 
 const AnswerjudgementPage = () => {
 	const navigate = useNavigate();
-
 	const [judgement, setJudgement] = useState(false);
 
 	const passAnswer = () => {
@@ -24,10 +23,6 @@ const AnswerjudgementPage = () => {
 		navigate('/');
 	}
 
-	const backPage = () => {
-		navigate('/answer-description-page');
-	}
-
 	return (
 		<div className="AnswerjudgementPage">
 			<div>
@@ -35,7 +30,7 @@ const AnswerjudgementPage = () => {
 				<button onClick={() => failAnswer()}>不合格</button>
 			</div>
 			<button onClick={() => returnCheckAnswer()}>採点結果を提出</button>
-			<button onClick={() => backPage()}>戻る</button>
+			<button onClick={() => navigate(-1)}>戻る</button>
 		</div>
 	);
 };

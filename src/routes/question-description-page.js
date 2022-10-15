@@ -22,10 +22,6 @@ const QuestionDescriptionPage = () => {
 		navigate('/');
 	}
 
-	const backPage = () => {
-		navigate('/question-list-page');
-	}
-
 	return (
 		<div className="QuestionDescriptionPage">
 			<div>
@@ -52,7 +48,7 @@ const QuestionDescriptionPage = () => {
 				<button onClick={() => uploadAnswer()}>解答をアップロード</button>
 			</div>
 			<button onClick={() => requestCheckAnswer()}>解答を依頼</button>
-			<button onClick={() => backPage()}>戻る</button>
+			<button onClick={() => navigate(-1)}>戻る</button>
 		</div>
 	);
 };
