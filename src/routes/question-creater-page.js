@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { useNavigate } from "react-router-dom"
 
 const QuestionCreaterPage = () => {
-	const navigate = useNavigate()
+	const navigate = useNavigate();
 	const [title, setTitle] = useState("");
 	const [description, setDescription] = useState("");
 
