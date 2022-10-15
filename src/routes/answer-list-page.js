@@ -5,7 +5,7 @@ const AnswerListPage = () => {
 	const answers = ["解答1", "解答2", "解答3"];
 
 	const moveAnswerDescriptionPage = (answer) => {
-		navigate('/', { state: { question: answer } });
+		navigate('/answer-description-page', { state: { answer: answer } });
 	}
 
 	return (
