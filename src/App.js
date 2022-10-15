@@ -1,6 +1,7 @@
 import './App.css';
 import Home from './routes/home';
 import QuestionCreaterPage from './routes/question-creater-page';
+import QuestionList from './routes/question-list';
 import NoMatch from './routes/nomatch';
 import { Routes, Route, Link} from 'react-router-dom';
 
@@ -15,6 +16,7 @@ function App() {
             <Routes>
                 <Route path="/" element={<Home />} />
                 <Route path="/question-creater-page" element={<QuestionCreaterPage />} />
+                <Route path="/question-list" element={<QuestionList />} />
                 <Route path="*" element={<NoMatch />} />
             </Routes>
         </div>

@@ -6,7 +6,7 @@ const QuestionCreaterPage = () => {
 	const [title, setTitle] = useState("");
 	const [description, setDescription] = useState("");
 
-	const onClickUploadButton = () => {
+	const uploadQuestion = () => {
 		navigate('/');
 	}
 
@@ -26,7 +26,7 @@ const QuestionCreaterPage = () => {
 					onChange={(event) => setDescription(event.target.value)}
 				/>
 			</div>
-			<button onClick={onClickUploadButton}>問題をアップロード</button>
+			<button onClick={uploadQuestion}>問題をアップロード</button>
 		</div>
 	);
 };
