@@ -18,10 +18,6 @@ const AnswerDescriptionPage = () => {
 		navigate('/answer-judgement-page');
 	}
 
-	const backPage = () => {
-		navigate('/answer-list-page');
-	}
-
 	return (
 		<div className="AnswerDescriptionPage">
 			<div>
@@ -40,7 +36,7 @@ const AnswerDescriptionPage = () => {
 				<button onClick={() => downloadAnswer()}>解答をダウンロード</button>
 			</div>
 			<button onClick={() => moveAnswerJudgementPage()}>採点結果を記入</button>
-			<button onClick={() => backPage()}>戻る</button>
+			<button onClick={() => navigate(-1)}>戻る</button>
 		</div>
 	);
 };
