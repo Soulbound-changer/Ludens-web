@@ -1,26 +1,24 @@
-import logo from './logo.svg';
 import './App.css';
-
-function sayHello() {
-  alert('You clicked me!');
-}
+import Home from './routes/home';
+import QuestionCreaterPage from './routes/question-creater-page';
+import NoMatch from './routes/nomatch';
+import { Routes, Route, Link} from 'react-router-dom';
 
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <h1>
-          Ludens
-        </h1>
-        <h2>
-          A Brand-New Learnfi is HERE!!!!!!
-        </h2>
-      </header>
-      <button onClick={sayHello}>問題を作る</button>
-      <button onClick={sayHello}>問題を解く</button>
-      <button onClick={sayHello}>採点する</button>
-    </div>
-  );
+    return (
+        <div className="App">
+            <header className="Home-header">
+                <h1>
+                    <Link to="/">Ludens</Link>
+                </h1>
+            </header>
+            <Routes>
+                <Route path="/" element={<Home />} />
+                <Route path="/question-creater-page" element={<QuestionCreaterPage />} />
+                <Route path="*" element={<NoMatch />} />
+            </Routes>
+        </div>
+    );
 }
 
 export default App;
