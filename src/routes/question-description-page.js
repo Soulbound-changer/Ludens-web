@@ -11,10 +11,14 @@ const QuestionDescriptionPage = () => {
 	const [prize, setPrize] = useState("");
 
 	const uploadAnswer = () => {
-		alert("解答をアップロードしました！！！");
+		alert("解答をアップロードしました");
 	}
 
 	const requestCheckAnswer = () => {
+		if (!window.confirm('解答を依頼しますか？')) {
+			return ;
+		}
+		alert("解答を依頼しました");
 		navigate('/');
 	}
 

@@ -11,11 +11,11 @@ const AnswerDescriptionPage = () => {
 	const [prize, setPrize] = useState("1000 yen");
 
 	const downloadAnswer = () => {
-		alert("解答をダウンロードしました！！！");
+		alert("解答をダウンロードしました");
 	}
 
-	const returnCheckAnswer = () => {
-		navigate('/');
+	const moveAnswerJudgementPage = () => {
+		navigate('/answer-judgement-page');
 	}
 
 	const backPage = () => {
@@ -39,7 +39,7 @@ const AnswerDescriptionPage = () => {
 			<div>
 				<button onClick={() => downloadAnswer()}>解答をダウンロード</button>
 			</div>
-			<button onClick={() => returnCheckAnswer()}>採点結果を記入</button>
+			<button onClick={() => moveAnswerJudgementPage()}>採点結果を記入</button>
 			<button onClick={() => backPage()}>戻る</button>
 		</div>
 	);
