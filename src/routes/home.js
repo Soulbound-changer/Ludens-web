@@ -1,6 +1,26 @@
-import { Link} from 'react-router-dom';
+import React, { useState } from "react";
+import { Link } from 'react-router-dom';
 
-function Home() {
+const Home = () => {
+    const [currentAccount, setCurrentAccount] = useState("");
+
+    const connectWallet = async () => {
+        try {
+          const { ethereum } = window;
+          if (!ethereum) {
+            alert("Get MetaMask!");
+            return;
+          }
+          const accounts = await ethereum.request({
+            method: "eth_requestAccounts",
+          });
+          console.log("Connected: ", accounts[0]);
+          setCurrentAccount(accounts[0]);
+        } catch (error) {
+          console.log(error);
+        }
+      };
+    
     return (
         <div className="Home">
             <h2>
@@ -8,13 +28,13 @@ function Home() {
             </h2>
             <ul>
                 <li>
-                    <Link to="/question-creater-page">問題を作る</Link>
+                    <Link to="/question-creater-page" onClick={connectWallet}>問題を作る</Link>
                 </li>
                 <li>
-                    <Link to="/question-list-page">問題を解く</Link>
+                    <Link to="/question-list-page" onClick={connectWallet}>問題を解く</Link>
                 </li>
                 <li>
-                    <Link to="/answer-list-page">採点する</Link>
+                    <Link to="/answer-list-page" onClick={connectWallet}>採点する</Link>
                 </li>
             </ul>
         </div>
