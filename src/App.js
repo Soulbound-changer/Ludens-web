@@ -9,7 +9,7 @@ import AnswerJudgementPage from './routes/answer-judgement-page';
 import NoMatch from './routes/nomatch';
 import { Routes, Route, Link} from 'react-router-dom';
 
-function App() {
+const App = () => {
     return (
         <div className="App">
             <header className="Home-header">
