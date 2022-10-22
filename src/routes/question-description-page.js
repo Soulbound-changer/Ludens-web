@@ -5,8 +5,8 @@ const QuestionDescriptionPage = () => {
 	const navigate = useNavigate();
 	const location = useLocation();
 
-	const [title, setTitle] = useState(location.state);
-	const [description, setDescription] = useState("fuga hoge fuga hoge fuga hoge fuga hoge fuga hoge");
+	const [state, setState] = useState(location.state);
+
 	const [discordName, setDiscordName] = useState("");
 	const [prize, setPrize] = useState("");
 
@@ -25,10 +25,10 @@ const QuestionDescriptionPage = () => {
 	return (
 		<div className="QuestionDescriptionPage">
 			<div>
-				Title: {title.question}
+				Title: {state.quiz.title}
 			</div>
 			<div>
-				Description: {description}
+				Description: {state.quiz.desc}
 			</div>
 			<div>
 				Discord name:
