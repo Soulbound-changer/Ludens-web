@@ -1,6 +1,6 @@
 import { useNavigate } from "react-router-dom"
 import { ethers } from "ethers";
-import { CONTRACT_ADDRESS } from "../const/const";
+import { QUIZ_CONTRACT_ADDRESS } from "../const/const";
 import artifact from "../abi/Quiz.json";
 import { useState, useEffect } from "react";
 
@@ -15,11 +15,11 @@ const QuestionListPage = () => {
 
 	const provider = new ethers.providers.Web3Provider(window.ethereum);
 	const signer = provider.getSigner();
-    const quizContract = new ethers.Contract(CONTRACT_ADDRESS, artifact.abi, signer);
+    const quizContract = new ethers.Contract(QUIZ_CONTRACT_ADDRESS, artifact.abi, signer);
 
 	useEffect(() => {
 		const getQuizzes = async () => {
-			console.log(CONTRACT_ADDRESS);
+			console.log(QUIZ_CONTRACT_ADDRESS);
 			const quizzes = await quizContract.getQuizzes();
 			const quizzesCleaned = quizzes.map((quiz) => {
 				return {
