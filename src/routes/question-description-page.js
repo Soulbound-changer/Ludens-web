@@ -19,24 +19,30 @@ const QuestionDescriptionPage = () => {
 	}
 
 	const requestCheckAnswer = async () => {
+		if (!window.confirm('解答を依頼しますか？')) {
+			return ;
+		}
 		const provider = new ethers.providers.Web3Provider(window.ethereum);
 		const signer = provider.getSigner();
 		const skillSbtContract = new ethers.Contract(SKILL_SBT_CONTRACT_ADDRESS, artifact.abi, signer);
+		await skillSbtContract.requestScoring(state.quiz.id);
 		const skillSbts = await skillSbtContract.getSkillSbts();
+		if (skillSbts.length === 0) {
+			alert("依頼できませんでした。");
+		}
 		const skillSbtsCleaned = skillSbts.map((skillSbt) => {
 			return {
-				address: skillSbt.owner,
+				owner: skillSbt.owner,
 				timestamp: new Date(skillSbt.timestamp * 1000),
 				id: skillSbt.id,
 				quizId: skillSbt.quizId,
+				scoringQuizId: skillSbt.scoringQuizId,
+				answerer: skillSbt.answerer,
 			};
 		});
 		console.log(skillSbtsCleaned);
-		// if (!window.confirm('解答を依頼しますか？')) {
-		// 	return ;
-		// }
-		// alert("解答を依頼しました");
-		// navigate('/');
+		alert("解答を依頼しました");
+		navigate('/');
 	}
 
 	return (

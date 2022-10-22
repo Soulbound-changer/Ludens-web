@@ -20,11 +20,12 @@ const QuestionListPage = () => {
 	useEffect(() => {
 		const getQuizzes = async () => {
 			console.log(QUIZ_CONTRACT_ADDRESS);
-			const quizzes = await quizContract.getQuizzes();
+			const quizzes = await quizContract.getQuizzes({gasLimit: 5000000});
 			const quizzesCleaned = quizzes.map((quiz) => {
 				return {
 					address: quiz.quizner,
 					timestamp: new Date(quiz.timestamp * 1000),
+					id: quiz.id,
 					title: quiz.title,
 					desc: quiz.desc,
 				};

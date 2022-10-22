@@ -16,7 +16,7 @@ const QuestionCreaterPage = () => {
 		if (!window.confirm('問題をアップロードしますか？')) {
 			return ;
 		}
-		await quizContract.uploadQuiz(title, desc);
+		await quizContract.uploadQuiz(title, desc, {gasLimit: 5000000});
 		alert("問題をアップロードしました");
 		navigate('/');
 	}
