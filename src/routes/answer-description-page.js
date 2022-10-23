@@ -5,10 +5,10 @@ const AnswerDescriptionPage = () => {
 	const navigate = useNavigate();
 	const location = useLocation();
 
-	const [title, setTitle] = useState(location.state);
-	const [description, setDescription] = useState("fuga hoge fuga hoge fuga hoge fuga hoge fuga hoge");
+	const [state, setState] = useState(location.state);
+
 	const [discordName, setDiscordName] = useState("God");
-	const [prize, setPrize] = useState("1000 yen");
+	const [prize, setPrize] = useState("0.01 ETH");
 
 	const downloadAnswer = () => {
 		alert("解答をダウンロードしました");
@@ -21,10 +21,10 @@ const AnswerDescriptionPage = () => {
 	return (
 		<div className="AnswerDescriptionPage">
 			<div>
-				Title: {title.answer}
+				Title: {state.answer.title}
 			</div>
 			<div>
-				Description: {description}
+				Description: {state.answer.desc}
 			</div>
 			<div>
 				Discord name: {discordName}

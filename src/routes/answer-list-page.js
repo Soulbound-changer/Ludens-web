@@ -1,18 +1,83 @@
 import { useNavigate } from "react-router-dom"
+import { useState, useEffect } from "react";
+import { ethers } from "ethers";
+import { SKILL_SBT_CONTRACT_ADDRESS } from "../const/const";
+import skillSbtArtifact from "../abi/SkillSbt.json";
+import quizArtifact from "../abi/Quiz.json";
+import { QUIZ_CONTRACT_ADDRESS } from "../const/const";
 
 const AnswerListPage = () => {
+	const [answers, setAnswers] = useState([]);
+
 	const navigate = useNavigate();
-	const answers = ["解答1", "解答2", "解答3"];
 
 	const moveAnswerDescriptionPage = (answer) => {
 		navigate('/answer-description-page', { state: { answer: answer } });
 	}
 
+	const provider = new ethers.providers.Web3Provider(window.ethereum);
+	const signer = provider.getSigner();
+    const skillSbtContract = new ethers.Contract(SKILL_SBT_CONTRACT_ADDRESS, skillSbtArtifact.abi, signer);
+    const quizContract = new ethers.Contract(QUIZ_CONTRACT_ADDRESS, quizArtifact.abi, signer);
+
+	const { ethereum } = window;
+
+	useEffect(() => {
+		const getSkillSbts = async () => {
+			const accounts = await ethereum.request({
+				method: "eth_requestAccounts",
+			});
+			const walletAddress = accounts[0].toUpperCase();
+			console.log(walletAddress);
+			const skillSbts = await skillSbtContract.getSkillSbts();
+			let skillSbtsCleaned = skillSbts.map((skillSbt) => {
+				return {
+					owner: skillSbt.owner,
+					timestamp: new Date(skillSbt.timestamp * 1000),
+					id: skillSbt.id.toNumber(),
+					quizId: skillSbt.quizId.toNumber(),
+					scoringQuizId: skillSbt.scoringQuizId,
+					answerer: skillSbt.answerer.toUpperCase(),
+				};
+			});
+			console.log(skillSbtsCleaned);
+			skillSbtsCleaned = skillSbtsCleaned.filter((skillSbt) => {
+				return skillSbt.answerer === walletAddress;
+			});
+			console.log(skillSbtsCleaned);
+			const quizzes = await quizContract.getQuizzes({gasLimit: 5000000});
+			let quizzesCleaned = quizzes.map((quiz) => {
+				return {
+					address: quiz.quizner,
+					timestamp: new Date(quiz.timestamp * 1000),
+					id: quiz.id.toNumber(),
+					title: quiz.title,
+					desc: quiz.desc,
+				};
+			});
+			console.log(quizzesCleaned);
+			let answers = [];
+			for (let i = 0; i < quizzesCleaned.length; i++) {
+				for (let j = 0; j < skillSbtsCleaned.length; j++) {
+					if (quizzesCleaned[i].id === skillSbtsCleaned[j].quizId) {
+						answers.push(quizzesCleaned[i]);
+					}
+				}
+			}
+			console.log(answers);
+			setAnswers(answers);
+		}
+		getSkillSbts();
+		console.log('Got answers from chain');
+	}, []);
+
 	return (
 		<div className="AnswerListPage">
 			<div>
 				{answers.map((answer) => (
-					<button onClick={() => moveAnswerDescriptionPage(answer)}>{answer}</button>
+					<div>
+						<button onClick={() => moveAnswerDescriptionPage(answer)}>title: {answer.title}</button>
+					</div>
 				))}
 			</div>
 		</div>
