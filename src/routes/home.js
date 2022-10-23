@@ -36,6 +36,9 @@ const Home = () => {
                 <li>
                     <Link to="/answer-list-page" onClick={connectWallet}>採点する</Link>
                 </li>
+                <li>
+                    <Link to="/sbt-list-page" onClick={connectWallet}>SBT一覧</Link>
+                </li>
             </ul>
         </div>
     );

@@ -3,6 +3,11 @@ import { useNavigate } from "react-router-dom"
 import { ethers } from "ethers";
 import { QUIZ_CONTRACT_ADDRESS } from "../const/const";
 import artifact from "../abi/Quiz.json";
+// import { TextField } from '@mui/material';
+// import * as React from 'react';
+import TextField from '@mui/material/TextField';
+import TextareaAutosize from '@mui/material/TextareaAutosize';
+import Button from '@mui/material/Button';
 
 const QuestionCreaterPage = () => {
 	const [title, setTitle] = useState("");
@@ -43,20 +48,62 @@ const QuestionCreaterPage = () => {
 	return (
 		<div className="QuestionCreaterPage">
 			<div>
-				Title:
-				<input
+				{/* Title: */}
+				{/* <input
 					value={title}
 					onChange={(event) => setTitle(event.target.value)}
+				/> */}
+				<TextField
+					// fullWidth
+					id="Title"
+					label="Title"
+					variant="outlined"
+					margin="normal"
+					// style={{ height }}
+					style = {{width: 300}}
+					// sx={{ width: 1000 }}
+					// InputProps={{ sx: { height: 200 } }}
+					// inputStyle={{ textAlign: 'left' }}
+					onChange={(event) => setTitle(event.target.value)}
 				/>
+
 			</div>
 			<div>
-				Description:
+				{/* Description:
 				<input
+					type="text"
+					size="100"
+					width="48"
+					height="200"
 					value={description}
+					onChange={(event) => setDescription(event.target.value)}
+				/> */}
+				{/* <TextField
+					fullWidth
+					id="Description"
+					label="Description"
+					variant="outlined"
+					margin="normal"
+					// style={{ height }}
+					// style = {{width: 300, height: 100}}
+					sx={{ width: 1000 }}
+					InputProps={{
+						sx: { height: 200 },
+						style: { textAlign: "right" }
+					}}
+					// inputStyle={{ textAlign: 'left' }}
+					onChange={(event) => setDescription(event.target.value)}
+				/> */}
+				<TextareaAutosize
+					aria-label="empty textarea"
+					placeholder="Description"
+					minRows={10}
+					style={{ width: 400}}
 					onChange={(event) => setDescription(event.target.value)}
 				/>
 			</div>
-			<button onClick={() => uploadQuestion(title, description)}>問題をアップロード</button>
+			<Button onClick={() => uploadQuestion(title, description)} variant="contained">問題をアップロード</Button>
+			{/* <button onClick={() => uploadQuestion(title, description)}>問題をアップロード</button> */}
 			{/* <button onClick={() => test()}>テスト</button> */}
 		</div>
 	);

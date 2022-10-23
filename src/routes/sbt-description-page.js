@@ -9,7 +9,7 @@ import TextField from '@mui/material/TextField';
 import TextareaAutosize from '@mui/material/TextareaAutosize';
 import Button from '@mui/material/Button';
 
-const QuestionDescriptionPage = () => {
+const SbtDescriptionPage = () => {
 	const navigate = useNavigate();
 	const location = useLocation();
 
@@ -24,31 +24,17 @@ const QuestionDescriptionPage = () => {
 	}
 
 	const requestCheckAnswer = async () => {
-		if (!window.confirm('解答を依頼しますか？')) {
-			return ;
-		}
-		const provider = new ethers.providers.Web3Provider(window.ethereum);
-		const signer = provider.getSigner();
-		const answerContract = new ethers.Contract(ANSWER_CONTRACT_ADDRESS, answerArtifact.abi, signer);
-		const isSuccessRequest = await answerContract.requestScoring(state.quiz.id, {gasLimit: 10000000});
-		// const answers = await answerContract.getAnswers();
-		if (!isSuccessRequest) {
-			alert("依頼できませんでした。");
-		}
-		// const skillSbtContract = new ethers.Contract(SKILL_SBT_CONTRACT_ADDRESS, skillSbtArtifact.abi, signer);
-		// const skillSbts = await skillSbtContract.getSkillSbts();
-		// const skillSbtsCleaned = skillSbts.map((skillSbt) => {
-		// 	return {
-		// 		owner: skillSbt.owner,
-		// 		timestamp: new Date(skillSbt.timestamp * 1000),
-		// 		id: skillSbt.id,
-		// 		quizId: skillSbt.quizId,
-		// 		scoringQuizId: skillSbt.scoringQuizId,
-		// 		answerer: skillSbt.answerer,
-		// 	};
-		// });
-		// console.log(skillSbtsCleaned);
-		alert("解答を依頼しました");
+		// if (!window.confirm('解答を依頼しますか？')) {
+		// 	return ;
+		// }
+		// const provider = new ethers.providers.Web3Provider(window.ethereum);
+		// const signer = provider.getSigner();
+		// const answerContract = new ethers.Contract(ANSWER_CONTRACT_ADDRESS, answerArtifact.abi, signer);
+		// const isSuccessRequest = await answerContract.requestScoring(state.quiz.id, {gasLimit: 10000000});
+		// if (!isSuccessRequest) {
+		// 	alert("依頼できませんでした。");
+		// }
+		alert("メールを送信しました");
 		navigate('/');
 	}
 
@@ -71,22 +57,47 @@ const QuestionDescriptionPage = () => {
 	}
 
 	return (
-		<div className="QuestionDescriptionPage">
+		<div className="SbtDescriptionPage">
 			<div>
 				<TextField
-					id="Title"
-					label="Title"
+					id="Address"
+					label="Address"
+					variant="outlined"
+					margin="normal"
+					style = {{width: 400}}
+					InputProps={{
+						readOnly: true,
+					}}
+					defaultValue="0xf39Fd6e51aad88F6F4ce6aB8827279cffFb92266"
+				/>
+			</div>
+			<div>
+				<TextField
+					id="SBTlank1"
+					label="採点した回数"
 					variant="outlined"
 					margin="normal"
 					style = {{width: 300}}
 					InputProps={{
 						readOnly: true,
 					}}
-					defaultValue={state.quiz.title}
+					defaultValue="0"
 				/>
 			</div>
 			<div>
-				{/* Description: {state.quiz.desc} */}
+				<TextField
+					id="SBTlank1"
+					label="良い採点者に選ばれた回数"
+					variant="outlined"
+					margin="normal"
+					style = {{width: 300}}
+					InputProps={{
+						readOnly: true,
+					}}
+					defaultValue="0"
+				/>
+			</div>
+			<div>
 				<TextareaAutosize
 					aria-label="empty textarea"
 					placeholder="Description"
@@ -95,37 +106,19 @@ const QuestionDescriptionPage = () => {
 					InputProps={{
 						readOnly: true,
 					}}
-					defaultValue={state.quiz.desc}
-					// onChange={(event) => setDescription(event.target.value)}
+					value="自己紹介や連絡先など"
 				/>
 			</div>
 			<div>
-				<Button variant="outlined" component="label" sx={{ width: 200, padding: 1, margin: 1 }}>
-					解答をアップロード
-					<input hidden multiple type="file" />
-				</Button>
-				{/* <Button
-					variant="outlined"
-					sx={{ width: 200, padding: 1, margin: 2 }}
-				>
-					解答をアップロード
-					<input hidden accept="image/*" multiple type="file" />
-				</Button> */}
-				{/* <button onClick={() => uploadAnswer()}>解答をアップロード</button> */}
 			</div>
 				<Button onClick={() => requestCheckAnswer()} variant="contained" component="label" sx={{ width: 200, padding: 1, margin: 1 }}>
-					解答を依頼
+					コンタクト
 				</Button>
 				<Button onClick={() => navigate(-1)} variant="contained" component="label" sx={{ width: 200, padding: 1, margin: 1 }}>
 					戻る
 				</Button>
-				{/* <button onClick={() => requestCheckAnswer()}>解答を依頼</button> */}
-				{/* <button onClick={() => navigate(-1)}>戻る</button> */}
-			{/* <div>
-				<button onClick={() => test()}>テスト</button>
-			</div> */}
 		</div>
 	);
 };
 
-export default QuestionDescriptionPage;
+export default SbtDescriptionPage;

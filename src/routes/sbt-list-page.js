@@ -12,14 +12,14 @@ import ListItemButton from '@mui/material/ListItemButton';
 import ListItemText from '@mui/material/ListItemText';
 import Divider from '@mui/material/Divider';
 
-const AnswerListPage = () => {
+const SbtListPage = () => {
 	const [answers, setAnswers] = useState([]);
 	const answerss = ["ウォレット接続機能"];
 
 	const navigate = useNavigate();
 
 	const moveAnswerDescriptionPage = (answer) => {
-		navigate('/answer-description-page', { state: { answer: answer } });
+		navigate('/sbt-list-page2', { state: { answer: answer } });
 	}
 
 	const provider = new ethers.providers.Web3Provider(window.ethereum);
@@ -103,4 +103,4 @@ const AnswerListPage = () => {
 	);
 };
 
-export default AnswerListPage;
+export default SbtListPage;
